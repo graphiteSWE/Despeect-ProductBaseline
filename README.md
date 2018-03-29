@@ -1,5 +1,8 @@
 # Despeect-ProductBaseline
 
+[![Build Status](https://travis-ci.org/graphiteSWE/Despeect-ProductBaseline.svg?branch=master)](https://travis-ci.org/graphiteSWE/Despeect-ProductBaseline)
+[![Coverage Status](https://coveralls.io/repos/github/graphiteSWE/Despeect-ProductBaseline/badge.svg?branch=master)](https://coveralls.io/github/graphiteSWE/Despeect-ProductBaseline?branch=master)
+
 ## Introduzione
 
 Product Baseline del gruppo Graphite per il progetto DeSpeect, realizzato in collaborazione con Mivoq s.r.l. per il progetto didattico del corso di Ingegneria del Software del cdl in Informatica dell'Università degli Studi di Padova.
