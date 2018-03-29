@@ -3,7 +3,7 @@
 SetSpeectConfigCommand::SetSpeectConfigCommand(
         Speect *engine
         ,const Configuration::configName &name
-        , const std::string &value
+        , const std::__cxx11::string &value
         )
     :AbstractCommand(engine)
     ,name(name)

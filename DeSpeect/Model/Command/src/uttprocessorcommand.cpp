@@ -1,6 +1,6 @@
 #include "uttprocessorcommand.h"
 
-UttProcessorCommand::UttProcessorCommand(Speect*engine, const std::string &processor)
+UttProcessorCommand::UttProcessorCommand(Speect*engine, std::string processor)
     :AbstractCommand(engine)
     ,Processor(processor)
 {

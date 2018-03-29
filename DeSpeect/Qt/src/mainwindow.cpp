@@ -7,9 +7,9 @@ MainWindow::MainWindow(QWidget *parent)
     ,g()
 {
     ui->setupUi(this);
-    g.linkGraphModel(ui->graphicsView);
+    /*g.linkGraphModel(ui->graphicsView);
     g.linkRelationModel(ui->listView);
-}
+*/}
 
 MainWindow::~MainWindow()
 {

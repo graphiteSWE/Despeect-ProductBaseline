@@ -3,10 +3,10 @@
 #include "abstractcommand.h"
 class UttProcessorCommand:public AbstractCommand
 {
-   const std::string Processor;
+   std::string Processor;
 public:
 
-    UttProcessorCommand(Speect *, const std::string&);
+    UttProcessorCommand(Speect *,std::string);
     const std::string execute()const;
 };
 #endif // UTTPROCESSORCOMMAND_H

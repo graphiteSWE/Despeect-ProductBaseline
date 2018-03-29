@@ -15,17 +15,17 @@ include_directories(src)
 set( SOURCES
         src/arc.cpp
 	src/graphmanager.cpp
-	src/id.cpp
-	src/mainwindow.cpp
+        src/id.cpp
         src/node.cpp
         src/line.cpp
-        src/mainwindow.ui
+        src/modelview.cpp
+        src/view.ui
         )
 set( HEADER
         header/arc.h
         header/graphmanager.h
-	header/id.h
-	header/mainwindow.h
+        header/id.h
+        header/modelview.h
 	header/node.h
         header/line.h
 )

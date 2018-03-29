@@ -1,5 +1,5 @@
 #include "loadplugincommand.h"
-LoadPluginCommand::LoadPluginCommand(Speect *engine,const std::string & PluginPath)
+LoadPluginCommand::LoadPluginCommand(Speect *engine,const std::__cxx11::string & PluginPath)
     :AbstractCommand(engine)
     ,PluginPath(PluginPath)
 {
