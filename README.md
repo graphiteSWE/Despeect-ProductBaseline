@@ -29,7 +29,11 @@ Per installare ed eseguire, attenersi alla seguente procedura:
 
 ## Scopo della Product Baseline
 
-### Problemi risolti e funzionalità sviluppate
+### Funzionalità sviluppate
+
+### Use Case Coperti
+
+### Requisiti Soddisfatti
 
 ## Tecnologie impiegate
 
