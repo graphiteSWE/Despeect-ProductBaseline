@@ -1,6 +1,10 @@
 --- 
+language: cpp
+sudo: required
 addons: 
   apt: 
+    sources:
+      - ubuntu-toolchain-r-test
     packages: 
       - cmake
       - gcc-7
@@ -10,28 +14,33 @@ addons:
       - python-dev
       - python-sphinx
       - doxygen
-    sources: 
-      - ubuntu-toolchain-r-test
-after_success: 
-  - "coveralls --root . -E \".*gtest.*\" -E \".*CMakeFiles.*\""
+compiler: 
+  - gcc
+env: 
+  - "MATRIX_EVAL=\"CC=gcc-7 && CXX=g++-7\""
 before_install: 
+  - "sudo apt-get -qq update"
   - "eval \"${MATRIX_EVAL}\""
   - "pip install --user cpp-coveralls"
   - "sudo add-apt-repository --yes ppa:ubuntu-sdk-team/ppa"
   - "sudo apt-get update -qq"
   - "sudo apt-get install qtbase5-dev qtdeclarative5-dev libqt5webkit5-dev libsqlite3-dev"
   - "sudo apt-get install qt5-default qttools5-dev-tools"
-compiler: 
-  - gcc
-env: 
-  - "MATRIX_EVAL=\"CC=gcc-7 && CXX=g++-7\""
 install: 
   - "sudo apt-get update"
   - "sudo apt-get install libcppunit-dev"
-language: cpp
+  - "wget http://ftp.de.debian.org/debian/pool/main/l/lcov/lcov_1.11.orig.tar.gz"
+  - "tar xf lcov_1.11.orig.tar.gz"
+  - "sudo make -C lcov-1.11/ install"
+  - "gem install coveralls-lcov"
+  - "lcov --version"
+  - "g++ --version"
+script: 
+  - ./build.sh
+after_success: 
+  - "lcov --directory . --capture --output-file coverage.info"
+  - "lcov --remove coverage.info 'Test/*' 'build/googletest/*' --output-file coverage.info"
+  - "lcov --list coverage.info"
+  - "coveralls-lcov --repo-token 9gDB7Uaw5pkpInTplocbIlpFxRIVkM4LK coverage.info"
 notifications: 
   email: false
-script: 
-  - "gcc --version"
-  - ./build.sh
-sudo: required
