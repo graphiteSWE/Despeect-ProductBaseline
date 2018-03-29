@@ -1,6 +1,6 @@
 #include "createaudiocommand.h"
 #include "configuration.h"
-CreateAudioCommand::CreateAudioCommand(Speect *engine, const std::__cxx11::string &format)
+CreateAudioCommand::CreateAudioCommand(Speect *engine, const std::string &format)
     :AbstractCommand(engine)
     ,AudioFormat(format)
 {
