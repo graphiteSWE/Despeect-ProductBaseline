@@ -41,6 +41,6 @@ after_success:
   - "lcov --directory . --capture --output-file coverage.info"
   - "lcov --remove coverage.info 'Test/*' 'build/googletest/*' --output-file coverage.info"
   - "lcov --list coverage.info"
-  - "coveralls-lcov --repo-token 9gDB7Uaw5pkpInTplocbIlpFxRIVkM4LK coverage.info"
+  - "coveralls-lcov --repo-token LEsSK2yPspQ4UPHg8rkbysf59IKLwlRCi coverage.info"
 notifications: 
   email: false
