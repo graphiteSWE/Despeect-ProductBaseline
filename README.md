@@ -24,6 +24,8 @@ Per installare ed eseguire, attenersi alla seguente procedura:
 
 1. Clonare o scaricare la repository sulla propria macchina
 2. Eseguire lo script `build.sh`
+3. Entrare nella cartella della build con il comando `cd DeSpeect/build/`
+4. Avviare l'eseguibile con il comando `./main`
 
 ### Note aggiuntive
 
