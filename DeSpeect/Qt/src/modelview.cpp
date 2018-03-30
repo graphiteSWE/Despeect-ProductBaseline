@@ -6,15 +6,18 @@
 #include <setspeectconfigcommand.h>
 #include <uttprocessorcommand.h>
 #include "relation.h"
-ModelView::ModelView(Speect *s, QWidget *parent)
+ModelView::ModelView(AbstractCommandList::CommandBuilder *builder, QWidget *parent)
     :QMainWindow(parent)
     ,ui(new Ui::View)
     ,g(new GraphManager())
-    ,s(s)
+    ,Processors(new QStandardItemModel(this))
+    ,commandsBuilder(builder)
+    ,commands(NULL)
 {
     ui->setupUi(this);
     g->linkGraphModel(ui->graphicsView);
     g->linkRelationModel(ui->relationsView);
+    ui->ProcessorsView->setModel(Processors);
     QFileDialog *t=new QFileDialog(this);
     t->setNameFilter("*.json");
     colors.push_back(QColor(qRgb(172,25,248)));
@@ -40,34 +43,30 @@ ModelView::~ModelView()
 #include "iostream"
 void ModelView::requestProcessorRun(bool execSteps)
 {
-    t9.clear();
-    if(ui->UtteranceText->text()!=NULL)
-    requestConfiguration(ui->UtteranceText->text(),Configuration::UtteranceText);
-    if(s->getUtterance())
+if(ui->UtteranceText->text()!=NULL)
+    commandsBuilder->LoadConfig(Configuration::UtteranceText,ui->UtteranceText->text().toStdString());
+    std::list<std::string> list;
+    for(int i=0;i<Processors->rowCount();++i)
     {
 
-        g->clear();
-        foreach(auto t,s->getUttProcessorNames())
-        {
-            t9.push_back(new UttProcessorCommand(s,t));
-        }
-        if(!execSteps)
-        {
-            AbstractCommand* command=NULL;
-            while(!t9.isEmpty())
-            {
+        list.push_back(Processors->item(i)->text().toStdString());
+    }
+    commandsBuilder->WithProcessors(list);
+    commands=commandsBuilder->getCommandList();
+    if(!execSteps)
+    {
+        commands->executeAll();
+        int i=0;
 
-                command=t9.takeFirst();
-                std::cout<<command->execute()<<std::endl;
-                delete command;
-            }
-            int i=0;
-            foreach (auto t,s->getUtterance()->getRelationNamesList())
-            {
-                Item temp(s->getUtterance()->getRelationByName(t).getRelationHead());
-                g->printRelation(QString(t.c_str()),&temp,colors.at(i));
-                ++i;
-            }
+        g->clear();
+
+        foreach (auto t,commands->getRelationNames())
+        {
+            const Relation* currentRelation = commands->getRelation(t);
+            Item temp(currentRelation->getRelationHead());
+            g->printRelation(QString(t.c_str()),&temp,colors.at(i));
+            delete currentRelation;
+            ++i;
         }
     }
 }
@@ -75,26 +74,27 @@ void ModelView::requestProcessorRun(bool execSteps)
 void ModelView::runStep()
 {
 
-
+/*
     if(!t9.isEmpty())
     {
 
         g->clear();
         AbstractCommand* t=t9.takeFirst();
-        t->execute();
+        t->execute(s);
         delete t;
         if(s->getUtterance())
         {
             int i=0;
             foreach (auto t,s->getUtterance()->getRelationNamesList())
             {
-
-                Item temp(s->getUtterance()->getRelationByName(t).getRelationHead());
+                Relation* currentRelation=s->getUtterance()->getRelationByName(t);
+                Item temp(currentRelation->getRelationHead());
                 g->printRelation(QString(t.c_str()),&temp,colors.at(i));
+                delete currentRelation;
                 ++i;
             }
         }
-    }
+    }*/
 }
 
 void ModelView::requestPluginRun()
@@ -105,22 +105,29 @@ void ModelView::requestPluginRun()
 
 void ModelView::requestPluginLoad(const QList<QString>& pluginPaths)
 {
-
+/*
     t9.clear();
     AbstractCommand* temp;
     foreach(auto t , pluginPaths)
     {
-        t9.push_back(new LoadPluginCommand(s,t.toStdString()));
+        t9.push_back(new LoadPluginCommand(t.toStdString()));
         temp=t9.takeFirst();
-        temp->execute();
+        temp->execute(s);
         delete temp;
     }
+*/
 }
-
+#include "iostream"
 void ModelView::requestConfiguration(const QString &info, const Configuration::configName &config)
 {
 
-    AbstractCommand* temp=new SetSpeectConfigCommand(s,config,info.toStdString());
-    std::cout<<temp->execute()<<std::endl;
-    delete temp;
+    commands=commandsBuilder->LoadConfig(config,info.toStdString()).getCommandList();
+    commands->executeAll();
+    if(config==Configuration::Voice)
+    {
+        auto processorsNames=commands->getUttProcessorsNames();
+        Processors->clear();
+        for(auto it=processorsNames.begin();it!=processorsNames.end();++it)
+            Processors->appendRow(new QStandardItem((*it).c_str()));
+    }
 }

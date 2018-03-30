@@ -3,6 +3,7 @@
 #define GetCurrentDir _getcwd
 #else
 #include <QApplication>
+#include <abstractcommandlist.h>
 #include <unistd.h>
 #define GetCurrentDir getcwd
 #endif
@@ -27,7 +28,9 @@ int main(int argc, char **argv) {
 
 Speect* s=new Speect();
 QApplication a(argc,argv);
-ModelView x(s);
+AbstractCommandList::CommandBuilder* Builder=new AbstractCommandList::CommandBuilder(s);
+ModelView x(Builder);
+//Builder->LoadConfig(Configuration::Audio,"test.wav").getCommandList()->executeAll();
 AbstractCommand* t9;
 //t9=new UttProcessorCommand(s,"Tokenize");
 //t9->execute();
