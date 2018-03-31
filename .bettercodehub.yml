@@ -4,10 +4,10 @@ exclude:
   - /DeSpeect/Test/.*
   - /DeSpeect/Qt/.*
 languages: 
-  - cpp
-production: 
-  include: 
-    - /DeSpeect/Model/.*
-test: 
-  include: 
-    - /DeSpeect/Test/.*
+  - name: cpp
+    production: 
+      include: 
+        - /DeSpeect/Model/.*
+    test: 
+      include: 
+        - /DeSpeect/Test/.*
