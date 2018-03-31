@@ -1,4 +1,13 @@
-exclude:
-- /SpeectInstaller/.*
-- /DeSpeect/Test/.*
-- /DeSpeect/Qt/.*
+--- 
+exclude: 
+  - /SpeectInstaller/.*
+  - /DeSpeect/Test/.*
+  - /DeSpeect/Qt/.*
+languages: 
+  - cpp
+production: 
+  include: 
+    - /DeSpeect/Model/.*
+test: 
+  include: 
+    - /DeSpeect/Test/.*
