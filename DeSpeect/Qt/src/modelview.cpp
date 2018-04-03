@@ -8,7 +8,6 @@
 #include "relation.h"
 
 #include <QFont>
-#include<iostream>
 ModelView::ModelView(AbstractCommandList::CommandBuilder *builder, QWidget *parent)
     :QMainWindow(parent)
     ,ui(new Ui::View)
@@ -82,7 +81,7 @@ void ModelView::unlockUpdateItem(){
 void ModelView::evidenceNextProcessor(){
     QFont font;
     if(Processors->rowCount()-1>indexProsessor){
-        unsigned int oldIndex = indexProsessor;
+        int oldIndex = indexProsessor;
 
         do{
             indexProsessor++;
@@ -98,7 +97,6 @@ void ModelView::evidenceNextProcessor(){
             Processors->item(indexProsessor)->setForeground(Qt::green);
         }
     }
-    std::cout<<"indexProsessor "<<indexProsessor<<std::endl;
 }
 
 
@@ -160,27 +158,6 @@ void ModelView::requestProcessorRun(bool execSteps)
 void ModelView::runSingleStep()
 {
     requestProcessorRun(true);
-/*
-    if(!t9.isEmpty())
-    {
-
-        g->clear();
-        AbstractCommand* t=t9.takeFirst();
-        t->execute(s);
-        delete t;
-        if(s->getUtterance())
-        {
-            int i=0;
-            foreach (auto t,s->getUtterance()->getRelationNamesList())
-            {
-                Relation* currentRelation=s->getUtterance()->getRelationByName(t);
-                Item temp(currentRelation->getRelationHead());
-                g->printRelation(QString(t.c_str()),&temp,colors.at(i));
-                delete currentRelation;
-                ++i;
-            }
-        }
-    }*/
 }
 
 void ModelView::resetCommands(){
