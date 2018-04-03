@@ -5,10 +5,8 @@
 #include <setspeectconfigcommand.h>
 #include <uttprocessorcommand.h>
 
-#include "iostream"
 //Invokes the execute method of all commands in the list and clean the list
 void AbstractCommandList::executeAll(){
-    std::cout<<commands.size();
     while(!commands.empty()){
         AbstractCommandList::executeStep();
     }
@@ -50,6 +48,11 @@ void AbstractCommandList::addCommand(AbstractCommandList &listOfCommands){
          addCommand(command);
          listOfCommands.commands.pop_front();
      }
+
+}
+
+int AbstractCommandList::getNumberCommands(){
+    return commands.size();
 
 }
 

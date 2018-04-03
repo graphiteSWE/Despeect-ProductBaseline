@@ -39,6 +39,7 @@ public:
     void addCommand(AbstractCommand*);
     void addCommand(AbstractCommandList&);
 
+    int getNumberCommands();
 
     const Relation* getRelation(const std::string &)const;
     const std::list<std::string> getRelationNames()const ;

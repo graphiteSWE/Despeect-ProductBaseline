@@ -24,13 +24,21 @@ private:
     AbstractCommandList* commands;
     //here start the real var
     bool utteranceIsProcessed=false;
+    int indexProsessor;
     GraphManager* g;
     QStandardItemModel *Processors;
     Ui::View *ui;
     QVector<QColor>colors;
+
+    void clearLayoutProcessor();
+    void lockUpdateItem();
+    void unlockUpdateItem();
+    void evidenceNextProcessor();
+    void evidenceAllProcessor();
 public slots:
     void requestProcessorRun(bool execSteps=0);
-    void runStep();
+    void runSingleStep();
+    void resetCommands();
     void requestPluginRun();
     void requestPluginLoad(const QList<QString>&);
     void requestConfiguration(const QString& info,const Configuration::configName&config = Configuration::Voice);
