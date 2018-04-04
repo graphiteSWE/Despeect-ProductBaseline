@@ -1,0 +1,1 @@
+/usr/bin/cc -fPIC  -W -Wall -g -DSPCT_DEBUGMODE=1  -shared -Wl,-soname,lexicon.spi.1 -o ../../lib/lexicon.spi.1.0.0 CMakeFiles/lexicon_plugin.dir/src/plugin.c.o CMakeFiles/lexicon_plugin.dir/src/lexicon.c.o -Wl,-rpath,/home/matteo/Scrivania/Despeect-ProductBaseline/SpeectInstaller/builds/x86_64-Linux/Speect/engine/lib: ../../../engine/lib/libspct.so.1.1 -lm -ldl -lm 

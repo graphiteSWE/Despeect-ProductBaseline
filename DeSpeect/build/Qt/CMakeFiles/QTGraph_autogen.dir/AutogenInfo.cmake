@@ -1,0 +1,33 @@
+# Directories and files
+set(AM_CMAKE_BINARY_DIR "/home/matteo/Scrivania/Despeect-ProductBaseline/DeSpeect/build/")
+set(AM_CMAKE_SOURCE_DIR "/home/matteo/Scrivania/Despeect-ProductBaseline/DeSpeect/")
+set(AM_CMAKE_CURRENT_SOURCE_DIR "/home/matteo/Scrivania/Despeect-ProductBaseline/DeSpeect/Qt/")
+set(AM_CMAKE_CURRENT_BINARY_DIR "/home/matteo/Scrivania/Despeect-ProductBaseline/DeSpeect/build/Qt/")
+set(AM_CMAKE_INCLUDE_DIRECTORIES_PROJECT_BEFORE "")
+set(AM_BUILD_DIR "/home/matteo/Scrivania/Despeect-ProductBaseline/DeSpeect/build/Qt/QTGraph_autogen")
+set(AM_SOURCES "/home/matteo/Scrivania/Despeect-ProductBaseline/DeSpeect/Qt/src/arc.cpp;/home/matteo/Scrivania/Despeect-ProductBaseline/DeSpeect/Qt/src/graphmanager.cpp;/home/matteo/Scrivania/Despeect-ProductBaseline/DeSpeect/Qt/src/id.cpp;/home/matteo/Scrivania/Despeect-ProductBaseline/DeSpeect/Qt/src/node.cpp;/home/matteo/Scrivania/Despeect-ProductBaseline/DeSpeect/Qt/src/line.cpp;/home/matteo/Scrivania/Despeect-ProductBaseline/DeSpeect/Qt/src/modelview.cpp")
+set(AM_HEADERS "/home/matteo/Scrivania/Despeect-ProductBaseline/DeSpeect/Qt/header/arc.h;/home/matteo/Scrivania/Despeect-ProductBaseline/DeSpeect/Qt/header/graphmanager.h;/home/matteo/Scrivania/Despeect-ProductBaseline/DeSpeect/Qt/header/id.h;/home/matteo/Scrivania/Despeect-ProductBaseline/DeSpeect/Qt/header/modelview.h;/home/matteo/Scrivania/Despeect-ProductBaseline/DeSpeect/Qt/header/node.h;/home/matteo/Scrivania/Despeect-ProductBaseline/DeSpeect/Qt/header/line.h")
+# Qt environment
+set(AM_QT_VERSION_MAJOR "5")
+set(AM_QT_MOC_EXECUTABLE "/usr/lib/x86_64-linux-gnu/qt5/bin/moc")
+set(AM_QT_UIC_EXECUTABLE "/usr/lib/x86_64-linux-gnu/qt5/bin/uic")
+set(AM_QT_RCC_EXECUTABLE "/usr/lib/x86_64-linux-gnu/qt5/bin/rcc")
+# MOC settings
+set(AM_MOC_SKIP "")
+set(AM_MOC_DEFINITIONS "QT_CORE_LIB;QT_GUI_LIB;QT_NO_DEBUG;QT_WIDGETS_LIB")
+set(AM_MOC_INCLUDES "/home/matteo/Scrivania/Despeect-ProductBaseline/DeSpeect/build/Qt;/home/matteo/Scrivania/Despeect-ProductBaseline/DeSpeect/Qt;/home/matteo/Scrivania/Despeect-ProductBaseline/DeSpeect/build/Qt/QTGraph_autogen/include;/home/matteo/Scrivania/Despeect-ProductBaseline/SpeectInstaller/install/include/speect/engine;/home/matteo/Scrivania/Despeect-ProductBaseline/DeSpeect/Model/SpeectWrapper/header;/home/matteo/Scrivania/Despeect-ProductBaseline/DeSpeect/Model/Command/header;/home/matteo/Scrivania/Despeect-ProductBaseline/DeSpeect/Qt/header;/home/matteo/Scrivania/Despeect-ProductBaseline/DeSpeect/Qt/ui;/home/matteo/Scrivania/Despeect-ProductBaseline/DeSpeect/Qt/src;/home/matteo/Scrivania/Despeect-ProductBaseline/DeSpeect/Qt/INCLUDE_DIRECTORIES;/usr/include/x86_64-linux-gnu/qt5;/usr/include/x86_64-linux-gnu/qt5/QtWidgets;/usr/include/x86_64-linux-gnu/qt5/QtGui;/usr/include/x86_64-linux-gnu/qt5/QtCore;/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64;/usr/include")
+set(AM_MOC_OPTIONS "")
+set(AM_MOC_RELAXED_MODE "FALSE")
+set(AM_MOC_DEPEND_FILTERS "")
+set(AM_MOC_PREDEFS_CMD "/usr/bin/c++;-dM;-E;-c;/usr/share/cmake-3.9/Modules/CMakeCXXCompilerABI.cpp")
+# UIC settings
+set(AM_UIC_SKIP "")
+set(AM_UIC_TARGET_OPTIONS "")
+set(AM_UIC_OPTIONS_FILES "")
+set(AM_UIC_OPTIONS_OPTIONS "")
+set(AM_UIC_SEARCH_PATHS "")
+# RCC settings
+set(AM_RCC_SOURCES "" )
+set(AM_RCC_INPUTS "")
+set(AM_RCC_OPTIONS_FILES "")
+set(AM_RCC_OPTIONS_OPTIONS "")
