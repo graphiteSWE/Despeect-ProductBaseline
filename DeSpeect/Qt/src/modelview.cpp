@@ -15,7 +15,7 @@ ModelView::ModelView(AbstractCommandList::CommandBuilder *builder, QWidget *pare
     ,Processors(new QStandardItemModel(this))
     ,commandsBuilder(builder)
     ,commands(NULL)
-    ,indexProsessor(-1)
+    ,indexProcessor(-1)
 {
     ui->setupUi(this);
     g->linkGraphModel(ui->graphicsView);
@@ -37,7 +37,7 @@ ModelView::ModelView(AbstractCommandList::CommandBuilder *builder, QWidget *pare
 
     connect(ui->ExecuteAll,SIGNAL(released()),this,SLOT(requestProcessorRun()));
     connect(ui->ExecuteSingle,SIGNAL(released()),this,SLOT(runSingleStep()));
-    connect(ui->ResetExecuteSingle,SIGNAL(released()),this,SLOT(resetCommands()));
+    connect(ui->LoadProcessor,SIGNAL(released()),this,SLOT(resetCommands()));
 
 }
 
@@ -69,7 +69,8 @@ void ModelView::lockUpdateItem(){
 }
 
 void ModelView::unlockUpdateItem(){
-    ui->UtteranceText->setEnabled(true);
+    ui->UtteranceText->setEnabled(true);    
+    ui->ExecuteSingle->setEnabled(true);
     for(int i=0;i<Processors->rowCount();++i)
     {
         Processors->item(i)->setCheckable(true);
@@ -80,21 +81,21 @@ void ModelView::unlockUpdateItem(){
 
 void ModelView::evidenceNextProcessor(){
     QFont font;
-    if(Processors->rowCount()-1>indexProsessor){
-        int oldIndex = indexProsessor;
+    if(Processors->rowCount()-1>indexProcessor){
+        int oldIndex = indexProcessor;
 
         do{
-            indexProsessor++;
-        }while(Processors->rowCount()>indexProsessor && Processors->item(indexProsessor)->checkState()!=Qt::Checked);
+            indexProcessor++;
+        }while(Processors->rowCount()>indexProcessor && Processors->item(indexProcessor)->checkState()!=Qt::Checked);
 
-        if(Processors->rowCount()>indexProsessor){
+        if(Processors->rowCount()>indexProcessor){
             if(oldIndex!=-1){
                 font.setBold(false);
                 Processors->item(oldIndex)->setFont(font);
             }
             font.setBold(true);
-            Processors->item(indexProsessor)->setFont(font);
-            Processors->item(indexProsessor)->setForeground(Qt::green);
+            Processors->item(indexProcessor)->setFont(font);
+            Processors->item(indexProcessor)->setForeground(Qt::green);
         }
     }
 }
@@ -107,19 +108,19 @@ void ModelView::evidenceAllProcessor(){
         if(Processors->item(i)->checkState()==Qt::Checked){
             Processors->item(i)->setFont(font);
             Processors->item(i)->setForeground(Qt::green);
-            indexProsessor=i;
+            indexProcessor=i;
         }
     }
     if(Processors->rowCount()>0){
         font.setBold(true);
-        Processors->item(indexProsessor)->setFont(font);
+        Processors->item(indexProcessor)->setFont(font);
     }
 }
 
 void ModelView::requestProcessorRun(bool execSteps)
 {
 
-    if(commands==NULL || !execSteps || indexProsessor==-1)
+    if(commands==NULL || !execSteps || indexProcessor==-1)
         resetCommands();
 
     if(ui->UtteranceText->toPlainText()!=NULL && commands!=NULL){
@@ -127,11 +128,13 @@ void ModelView::requestProcessorRun(bool execSteps)
         if(!execSteps){
             evidenceAllProcessor();
             unlockUpdateItem();
-            commands->executeAll();
+            commands->executeAll();            
+            ui->ExecuteSingle->setEnabled(false);
         }
         else{
             if(commands->getNumberCommands()<=1){
                 unlockUpdateItem();
+                ui->ExecuteSingle->setEnabled(false);
             }
             else{
                 lockUpdateItem();
@@ -178,7 +181,7 @@ void ModelView::resetCommands(){
         }
     }
 
-    indexProsessor=-1;
+    indexProcessor=-1;
 
     commandsBuilder->WithProcessors(list);
     commands=commandsBuilder->getCommandList();

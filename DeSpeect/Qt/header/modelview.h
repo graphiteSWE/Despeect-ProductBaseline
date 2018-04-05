@@ -24,7 +24,7 @@ private:
     AbstractCommandList* commands;
     //here start the real var
     bool utteranceIsProcessed=false;
-    int indexProsessor;
+    int indexProcessor;
     GraphManager* g;
     QStandardItemModel *Processors;
     Ui::View *ui;
