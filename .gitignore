@@ -7,9 +7,24 @@
 *.o
 *.obj
 
+# Object files
+*.ko
+*.elf
+
 # Precompiled Headers
 *.gch
 *.pch
+
+# Linker output
+*.ilk
+*.map
+*.exp
+
+# Libraries
+*.lib
+*.a
+*.la
+*.lo
 
 # Compiled Dynamic libraries
 *.so
@@ -30,3 +45,35 @@
 *.exe
 *.out
 *.app
+*.i*86
+*.x86_64
+*.hex
+
+# Shared objects (inc. Windows DLLs)
+*.dll
+*.so
+*.so.*
+*.dylib
+
+# Executables
+*.exe
+*.out
+*.app
+
+# Debug files
+*.dSYM/
+*.su
+*.idb
+*.pdb
+
+# Kernel Module Compile Results
+*.mod*
+*.cmd
+.tmp_versions/
+modules.order
+Module.symvers
+Mkfile.old
+dkms.conf
+
+# Build folder
+build/
