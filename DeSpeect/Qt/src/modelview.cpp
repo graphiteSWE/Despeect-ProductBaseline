@@ -8,19 +8,18 @@
 #include "relation.h"
 
 #include <QFont>
-ModelView::ModelView(AbstractCommandList::CommandBuilder *builder, QWidget *parent)
+ModelView::ModelView(CommandList::CommandBuilder *builder, QWidget *parent)
     :QMainWindow(parent)
     ,ui(new Ui::View)
     ,g(new GraphManager())
-    ,Processors(new QStandardItemModel(this))
+    ,p(new ProcessorManager())
     ,commandsBuilder(builder)
     ,commands(NULL)
-    ,indexProcessor(-1)
 {
     ui->setupUi(this);
     g->linkGraphModel(ui->graphicsView);
     g->linkRelationModel(ui->relationsView);
-    ui->ProcessorsView->setModel(Processors);
+    p->linkProcessorModel(ui->ProcessorsView);
     QFileDialog *t=new QFileDialog(this);
     t->setNameFilter("*.json");
     colors.push_back(QColor(qRgb(172,25,248)));
@@ -31,13 +30,13 @@ ModelView::ModelView(AbstractCommandList::CommandBuilder *builder, QWidget *pare
     colors.push_back(QColor(qRgb(63,230,150)));
     colors.push_back(QColor(qRgb(151,157,0)));
     connect(ui->actionLoadVoice,SIGNAL(triggered(bool)),t,SLOT(open()));
-    connect(ui->loadVoiceButton,SIGNAL(released()),t,SLOT(open()));
+    connect(ui->loadVoiceButton,SIGNAL(clicked()),t,SLOT(open()));
     connect(t,SIGNAL(fileSelected(QString)),this,SLOT(requestConfiguration(QString)));
     connect(t,SIGNAL(fileSelected(QString)),ui->VoicePath,SLOT(setText(QString)));
 
-    connect(ui->ExecuteAll,SIGNAL(released()),this,SLOT(requestProcessorRun()));
-    connect(ui->ExecuteSingle,SIGNAL(released()),this,SLOT(runSingleStep()));
-    connect(ui->LoadProcessor,SIGNAL(released()),this,SLOT(resetCommands()));
+    connect(ui->ExecuteAll,SIGNAL(clicked()),this,SLOT(requestProcessorRun()));
+    connect(ui->ExecuteSingle,SIGNAL(clicked()),this,SLOT(runSingleStep()));
+    connect(ui->LoadProcessor,SIGNAL(clicked()),this,SLOT(loadSelectedProcessor()));
 
 }
 
@@ -47,86 +46,28 @@ ModelView::~ModelView()
     delete ui;
 }
 
-void ModelView::clearLayoutProcessor(){
-
-    QFont font;
-    font.setBold(false);
-    for(int i=0;i<Processors->rowCount();++i){
-        Processors->item(i)->setCheckable(true);
-        Processors->item(i)->setEditable(true);
-        Processors->item(i)->setFont(font);
-        Processors->item(i)->setForeground(Qt::white);
-    }
-}
-
 void ModelView::lockUpdateItem(){
     ui->UtteranceText->setEnabled(false);
-    for(int i=0;i<Processors->rowCount();++i)
-    {
-        Processors->item(i)->setCheckable(false);
-        Processors->item(i)->setEnabled(false);
-    }
+    p->lockUpdateItem();
 }
 
 void ModelView::unlockUpdateItem(){
     ui->UtteranceText->setEnabled(true);    
     ui->ExecuteSingle->setEnabled(true);
-    for(int i=0;i<Processors->rowCount();++i)
-    {
-        Processors->item(i)->setCheckable(true);
-        Processors->item(i)->setEnabled(true);
-    }
+    p->unlockUpdateItem();
 }
 
-
-void ModelView::evidenceNextProcessor(){
-    QFont font;
-    if(Processors->rowCount()-1>indexProcessor){
-        int oldIndex = indexProcessor;
-
-        do{
-            indexProcessor++;
-        }while(Processors->rowCount()>indexProcessor && Processors->item(indexProcessor)->checkState()!=Qt::Checked);
-
-        if(Processors->rowCount()>indexProcessor){
-            if(oldIndex!=-1){
-                font.setBold(false);
-                Processors->item(oldIndex)->setFont(font);
-            }
-            font.setBold(true);
-            Processors->item(indexProcessor)->setFont(font);
-            Processors->item(indexProcessor)->setForeground(Qt::green);
-        }
-    }
-}
-
-
-void ModelView::evidenceAllProcessor(){
-    QFont font;
-    font.setBold(false);
-    for(int i=0;i<Processors->rowCount();++i){
-        if(Processors->item(i)->checkState()==Qt::Checked){
-            Processors->item(i)->setFont(font);
-            Processors->item(i)->setForeground(Qt::green);
-            indexProcessor=i;
-        }
-    }
-    if(Processors->rowCount()>0){
-        font.setBold(true);
-        Processors->item(indexProcessor)->setFont(font);
-    }
-}
 
 void ModelView::requestProcessorRun(bool execSteps)
 {
 
-    if(commands==NULL || !execSteps || indexProcessor==-1)
-        resetCommands();
+    if(commands==NULL || !execSteps || p->isLayoutClean())
+        loadSelectedProcessor();
 
     if(ui->UtteranceText->toPlainText()!=NULL && commands!=NULL){
 
         if(!execSteps){
-            evidenceAllProcessor();
+            p->evidenceAllProcessor();
             unlockUpdateItem();
             commands->executeAll();            
             ui->ExecuteSingle->setEnabled(false);
@@ -139,7 +80,7 @@ void ModelView::requestProcessorRun(bool execSteps)
             else{
                 lockUpdateItem();
             }
-            evidenceNextProcessor();
+            p->evidenceNextProcessor();
             commands->executeStep();
         }
 
@@ -163,27 +104,17 @@ void ModelView::runSingleStep()
     requestProcessorRun(true);
 }
 
-void ModelView::resetCommands(){
+void ModelView::loadSelectedProcessor(){
 
     g->clear();
     commandsBuilder->LoadConfig(Configuration::UtteranceText,ui->UtteranceText->toPlainText().toStdString());
     commands=commandsBuilder->getCommandList();
     commands->executeAll();//Execute load configuration commands
 
-    clearLayoutProcessor();
+    p->clearLayoutProcessor();
     unlockUpdateItem();
 
-    std::list<std::string> list;
-
-    for(int i=0;i<Processors->rowCount();++i){
-        if(Processors->item(i)->checkState()==Qt::Checked){
-            list.push_back(Processors->item(i)->text().toStdString());
-        }
-    }
-
-    indexProcessor=-1;
-
-    commandsBuilder->WithProcessors(list);
+    commandsBuilder->WithProcessors(p->getProcessorList());
     commands=commandsBuilder->getCommandList();
 
 }
@@ -203,7 +134,7 @@ void ModelView::requestPluginLoad(const QList<QString>& pluginPaths)
     {
         t9.push_back(new LoadPluginCommand(t.toStdString()));
         temp=t9.takeFirst();
-        temp->execute(s);
+        tem//p->execute(s);
         delete temp;
     }
 */
@@ -216,13 +147,9 @@ void ModelView::requestConfiguration(const QString &info, const Configuration::c
     if(config==Configuration::Voice)
     {
         auto processorsNames=commands->getUttProcessorsNames();
-        Processors->clear();
+        p->clear();
         for(auto it=processorsNames.begin();it!=processorsNames.end();++it){
-            QStandardItem* item = new QStandardItem((*it).c_str());
-            item->setCheckable(true);
-            item->setSelectable(false);
-            item->setCheckState(Qt::Checked);
-            Processors->appendRow(item);
+            p->addProcessor((*it));
         }
     }
 }

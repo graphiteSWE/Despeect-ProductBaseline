@@ -4,7 +4,7 @@ include_directories(../SpeectWrapper/header)
 include_directories(header)
 set( SOURCES
     src/abstractcommand.cpp
-    src/abstractcommandlist.cpp
+    src/commandlist.cpp
     src/uttprocessorcommand.cpp
     src/loadplugincommand.cpp
     src/setspeectconfigcommand.cpp
@@ -12,7 +12,7 @@ set( SOURCES
 )
 set( HEADER
     header/abstractcommand.h
-    header/abstractcommandlist.h
+    header/commandlist.h
     header/uttprocessorcommand.h
     header/loadplugincommand.h
     header/setspeectconfigcommand.h

@@ -6,8 +6,9 @@ class View;
 #include <QMainWindow>
 #include <QStandardItemModel>
 #include <Speect.h>
-#include <abstractcommandlist.h>
+#include <commandlist.h>
 #include "configuration.h"
+#include <processormanager.h>
 
 
 class GraphManager;
@@ -17,16 +18,15 @@ class ModelView : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit ModelView(AbstractCommandList::CommandBuilder* commandBuilder,QWidget *parent = 0);
+    explicit ModelView(CommandList::CommandBuilder* commandBuilder,QWidget *parent = 0);
     ~ModelView();
 private:
-    AbstractCommandList::CommandBuilder* commandsBuilder;
-    AbstractCommandList* commands;
+    CommandList::CommandBuilder* commandsBuilder;
+    CommandList* commands;
     //here start the real var
     bool utteranceIsProcessed=false;
-    int indexProcessor;
     GraphManager* g;
-    QStandardItemModel *Processors;
+    ProcessorManager* p;
     Ui::View *ui;
     QVector<QColor>colors;
 
@@ -38,7 +38,7 @@ private:
 public slots:
     void requestProcessorRun(bool execSteps=0);
     void runSingleStep();
-    void resetCommands();
+    void loadSelectedProcessor();
     void requestPluginRun();
     void requestPluginLoad(const QList<QString>&);
     void requestConfiguration(const QString& info,const Configuration::configName&config = Configuration::Voice);

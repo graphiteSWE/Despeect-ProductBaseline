@@ -19,6 +19,7 @@ set( SOURCES
         src/node.cpp
         src/line.cpp
         src/modelview.cpp
+        src/processormanager.cpp
         src/view.ui
         )
 set( HEADER
@@ -26,8 +27,9 @@ set( HEADER
         header/graphmanager.h
         header/id.h
         header/modelview.h
-	header/node.h
+        header/node.h
         header/line.h
+        header/processormanager.h
 )
 set( MOC_HEADER
         mainwindow.moc
