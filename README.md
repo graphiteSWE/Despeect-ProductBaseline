@@ -18,7 +18,7 @@ Product Baseline del gruppo Graphite per il progetto DeSpeect, realizzato in col
 
 * Sistema operativo Unix / Unix-like (il software è stato testato solo per piattaforma Ubuntu 16.04 LTS)
 * CMAKE (versione minima 2.8)
-* Compilatore ANSI C/ISO C90
+* Compilatore ANSI C/ISO C90 
 * GCC
 * Qt 5.9.0
 
@@ -30,16 +30,6 @@ Per installare ed eseguire, attenersi alla seguente procedura:
 2. Eseguire lo script `build.sh`
 3. Entrare nella cartella della build con il comando `cd DeSpeect/build/`
 4. Avviare l'eseguibile con il comando `./main`
-
-### Note aggiuntive
-
-## Scopo della Product Baseline
-
-### Funzionalità sviluppate
-
-### Use Case Coperti
-
-### Requisiti Soddisfatti
 
 ## Tecnologie impiegate
 
