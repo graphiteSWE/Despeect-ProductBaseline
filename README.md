@@ -1,7 +1,6 @@
 # Despeect-ProductBaseline
 
 [![Build Status](https://travis-ci.org/graphiteSWE/Despeect-ProductBaseline.svg?branch=master)](https://travis-ci.org/graphiteSWE/Despeect-ProductBaseline)
-[![Coverage Status](https://coveralls.io/repos/github/graphiteSWE/Despeect-ProductBaseline/badge.svg?branch=master)](https://coveralls.io/github/graphiteSWE/Despeect-ProductBaseline?branch=master)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/32a1aa1505044c11842b4a687f47d7b9)](https://www.codacy.com/app/graphiteSWE/Despeect-ProductBaseline?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=graphiteSWE/Despeect-ProductBaseline&amp;utm_campaign=Badge_Grade)
 [![BCH compliance](https://bettercodehub.com/edge/badge/graphiteSWE/Despeect-ProductBaseline?branch=master)](https://bettercodehub.com/)
 
@@ -19,7 +18,7 @@ Product Baseline del gruppo Graphite per il progetto DeSpeect, realizzato in col
 
 * Sistema operativo Unix / Unix-like (il software è stato testato solo per piattaforma Ubuntu 16.04 LTS)
 * CMAKE (versione minima 2.8)
-* Compilatore ANSI C/ISO C90
+* Compilatore ANSI C/ISO C90 
 * GCC
 * Qt 5.9.0
 
@@ -31,16 +30,6 @@ Per installare ed eseguire, attenersi alla seguente procedura:
 2. Eseguire lo script `build.sh`
 3. Entrare nella cartella della build con il comando `cd DeSpeect/build/`
 4. Avviare l'eseguibile con il comando `./main`
-
-### Note aggiuntive
-
-## Scopo della Product Baseline
-
-### Funzionalità sviluppate
-
-### Use Case Coperti
-
-### Requisiti Soddisfatti
 
 ## Tecnologie impiegate
 
