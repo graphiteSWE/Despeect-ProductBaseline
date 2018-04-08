@@ -14,12 +14,20 @@ Product Baseline del gruppo Graphite per il progetto DeSpeect, realizzato in col
 * [Documentazione Qt](http://doc.qt.io/ "Documentazione Qt")
 * [Speect di Mivoq s.r.l.](https://github.com/mivoq/speect "Mivoq Speect") 
 
+
+## Tecnologie impiegate
+
+* Qt 5.9 LTS
+* CMAKE 2.8
+* Speect 1.1.0-69-g65f4
+* Ubuntu 16.04 LTS
+* Travis CI
+
 ## Prerequisiti
 
 * Sistema operativo Unix / Unix-like (il software è stato testato solo per piattaforma Ubuntu 16.04 LTS)
 * CMAKE (versione minima 2.8)
-* Compilatore ANSI C/ISO C90 
-* GCC
+* Compilatore ANSI C/ISO C90 GCC (versione minima 5.0)
 * Qt 5.9.0
 
 ## Installazione ed esecuzione
@@ -31,10 +39,12 @@ Per installare ed eseguire, attenersi alla seguente procedura:
 3. Entrare nella cartella della build con il comando `cd DeSpeect/build/`
 4. Avviare l'eseguibile con il comando `./main`
 
-## Tecnologie impiegate
+## Stampare un grafo
 
-* Qt 5.9 LTS
-* CMAKE 2.8
-* Speect 1.1.0-69-g65f4
-* Ubuntu 16.04 LTS
-* Travis CI
+Per stampare un grafo è sufficiente caricare un file `.jason` corrispondente a una voice cliccando sul pulsante `Load Voice` in alto a sinistra nella GUI, e successivamente avviare la stampa. Le voice disponibili sono contenute nella directory `SpeectInstaller/voices/`. Segue un esempio di procedura d'esecuzione:
+
+1. Aprire l'interfaccia grafica
+2. Cliccare il pulsante `Load Voice`
+3. Aprire il file corrispondente al path `SpeectInstaller/voices/cmu_arctic_slt/voice.jason`
+4. Selezionare gli utterance processor desiderati dall'omonima barra laterale
+5. Cliccare il pulsante `Run step` per eseguire gli utterance processor uno alla volta, oppure `Run all` per eseguirli tutti di seguito
