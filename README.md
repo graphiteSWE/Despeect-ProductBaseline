@@ -1,7 +1,6 @@
 # Despeect-ProductBaseline
 
-[![Build Status](https://travis-ci.org/graphiteSWE/Despeect-ProductBaseline.svg?branch=master)](https://travis-ci.org/graphiteSWE/Despeect-ProductBaseline)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/32a1aa1505044c11842b4a687f47d7b9)](https://www.codacy.com/app/graphiteSWE/Despeect-ProductBaseline?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=graphiteSWE/Despeect-ProductBaseline&amp;utm_campaign=Badge_Grade)
+[![Build Status](https://travis-ci.org/graphiteSWE/Despeect-ProductBaseline.svg?branch=master)](https://travis-ci.org/graphiteSWE/Despeect-ProductBaseline)utm_source=github.com&amp;utm_medium=referral&amp;utm_content=graphiteSWE/Despeect-ProductBaseline&amp;utm_campaign=Badge_Grade)
 [![BCH compliance](https://bettercodehub.com/edge/badge/graphiteSWE/Despeect-ProductBaseline?branch=master)](https://bettercodehub.com/)
 
 ## Introduzione
@@ -41,10 +40,10 @@ Per installare ed eseguire, attenersi alla seguente procedura:
 
 ## Stampare un grafo
 
-Per stampare un grafo è sufficiente caricare un file `.jason` corrispondente a una voice cliccando sul pulsante `Load Voice` in alto a sinistra nella GUI, e successivamente avviare la stampa. Le voice disponibili sono contenute nella directory `SpeectInstaller/voices/`. Segue un esempio di procedura d'esecuzione:
+Per stampare un grafo è sufficiente caricare un file `.json` corrispondente a una voice cliccando sul pulsante `Load Voice` in alto a sinistra nella GUI, e successivamente avviare la stampa. Le voice disponibili sono contenute nella directory `SpeectInstaller/voices/`. Segue un esempio di procedura d'esecuzione:
 
 1. Aprire l'interfaccia grafica
 2. Cliccare il pulsante `Load Voice`
-3. Aprire il file corrispondente al path `SpeectInstaller/voices/cmu_arctic_slt/voice.jason`
+3. Aprire il file corrispondente al path `SpeectInstaller/voices/cmu_arctic_slt/voice.json`
 4. Selezionare gli utterance processor desiderati dall'omonima barra laterale
 5. Cliccare il pulsante `Run step` per eseguire gli utterance processor uno alla volta, oppure `Run all` per eseguirli tutti di seguito
