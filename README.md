@@ -1,6 +1,6 @@
 # Despeect-ProductBaseline
 
-[![Build Status](https://travis-ci.org/graphiteSWE/Despeect-ProductBaseline.svg?branch=master)](https://travis-ci.org/graphiteSWE/Despeect-ProductBaseline)utm_source=github.com&amp;utm_medium=referral&amp;utm_content=graphiteSWE/Despeect-ProductBaseline&amp;utm_campaign=Badge_Grade)
+[![Build Status](https://travis-ci.org/graphiteSWE/Despeect-ProductBaseline.svg?branch=master)](https://travis-ci.org/graphiteSWE/Despeect-ProductBaseline)utm_source=github.com&amp;utm_medium=referral&amp;
 [![BCH compliance](https://bettercodehub.com/edge/badge/graphiteSWE/Despeect-ProductBaseline?branch=master)](https://bettercodehub.com/)
 
 ## Introduzione
